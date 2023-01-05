@@ -132,7 +132,7 @@ func UpdateRecruiter(recruiter_id int, recruiter_name string, recruiter_password
 
 	con := db.Createcon()
 
-	sqlStatement := "UPDATE users SET recruiter_id=?,recruiter_password=?,recruiter_title=?,recruiter_description=?,recruiter_contact=? WHERE recruiter_id=?"
+	sqlStatement := "UPDATE user_recruiter SET recruiter_id=?,recruiter_password=?,recruiter_title=?,recruiter_description=?,recruiter_contact=? WHERE recruiter_id=?"
 
 	stmt, err := con.Prepare(sqlStatement)
 
@@ -201,7 +201,7 @@ func CheckLogin(recruiter_name, recruiter_password string) (int, error) {
 	var id int
 	con := db.Createcon()
 
-	sqlStatement := "SELECT * FROM users WHERE email = ?"
+	sqlStatement := "SELECT * FROM user_recruiter WHERE email = ?"
 	err := con.QueryRow(sqlStatement, recruiter_name).Scan(
 		&id, &obj.RecruiterName, &obj.RecruiterTitle, &obj.RecruiterDescription, &obj.RecruiterContact, &pwd,
 	)
@@ -237,7 +237,7 @@ func FetchRecruiterById(recruiter_id string) (Recruiter, error) {
 
     con := db.Createcon()
 
-    sqlStatement := "SELECT * FROM users WHERE id = ?"
+    sqlStatement := "SELECT * FROM user_recruiter WHERE id = ?"
 
     rows := con.QueryRow(sqlStatement, recruiter_id)
 

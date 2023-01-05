@@ -26,15 +26,24 @@ func Init() *echo.Echo {
 	// e.GET("/user/:name", getUser)
 
 	// login
-	// e.POST("/login", controllers.CheckLogin)
+	e.POST("/login", controllers.CheckLogin)
 
-	// user
+
+	// RecruiterId          int    `json:"recruiter_id"`
+	// RecruiterName        string `json:"recruiter_name"`
+	// RecruiterPassword    string `json:"recruiter_password"`
+	// RecruiterTitle       string `json:"recruiter_title"`
+	// RecruiterDescription string `json:"recruiter_description"`
+	// RecruiterContact     string `json:"recruiter_contact"`
+	// CRUD RECRUITERS
+
+
 	// e.GET("/user", controllers.FetchAllUser,middleware.IsAuthenticated)
-	e.GET("/user", controllers.FetchAllRecruiter)
-	e.POST("/user", controllers.StoreRecruiter)
-	// e.PATCH("/user", controllers.UpdateRecruiter)
-	// e.DELETE("/user", controllers.DeleteRecruiter)
-	// e.GET("/user/:id", controllers.FetchRecruiterById)
+	e.GET("/recruiter", controllers.FetchAllRecruiter)
+	e.POST("/recruiter", controllers.StoreRecruiter)
+	e.PATCH("/recruiter", controllers.UpdateRecruiter)
+	e.DELETE("/recruiter", controllers.DeleteRecruiter)
+	e.GET("/recruiter/:id", controllers.FetchRecruiterById)
 
 	// // plan
 	// e.GET("/plan", controllers.FetchAllPlan)
