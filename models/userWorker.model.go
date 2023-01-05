@@ -204,7 +204,7 @@ func CheckLogin(worker_name, worker_password string) (int, error) {
 	var id int
 	con := db.Createcon()
 
-	sqlStatement := "SELECT * FROM user_worker WHERE WorkerName = ?"
+	sqlStatement := "SELECT * FROM user_worker WHERE worker_name = ?"
 	err := con.QueryRow(sqlStatement, worker_name).Scan(
 		&id, &obj.WorkerName, &obj.WorkerTitle, &obj.WorkerDescription, &obj.WorkerContact, &pwd,
 	)

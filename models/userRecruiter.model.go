@@ -201,7 +201,7 @@ func CheckLogin(recruiter_name, recruiter_password string) (int, error) {
 	var id int
 	con := db.Createcon()
 
-	sqlStatement := "SELECT * FROM user_recruiter WHERE email = ?"
+	sqlStatement := "SELECT * FROM user_recruiter WHERE recruiter_name = ?"
 	err := con.QueryRow(sqlStatement, recruiter_name).Scan(
 		&id, &obj.RecruiterName, &obj.RecruiterTitle, &obj.RecruiterDescription, &obj.RecruiterContact, &pwd,
 	)
