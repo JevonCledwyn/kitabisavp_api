@@ -29,14 +29,7 @@ func Init() *echo.Echo {
 	e.POST("/login", controllers.CheckLogin)
 
 
-	// RecruiterId          int    `json:"recruiter_id"`
-	// RecruiterName        string `json:"recruiter_name"`
-	// RecruiterPassword    string `json:"recruiter_password"`
-	// RecruiterTitle       string `json:"recruiter_title"`
-	// RecruiterDescription string `json:"recruiter_description"`
-	// RecruiterContact     string `json:"recruiter_contact"`
 	// CRUD RECRUITERS
-
 
 	// e.GET("/user", controllers.FetchAllUser,middleware.IsAuthenticated)
 	e.GET("/recruiter", controllers.FetchAllRecruiter)
@@ -63,8 +56,6 @@ func Init() *echo.Echo {
 	// e.GET("/moneyPemasukan/:id", controllers.FetchDataPemasukanByUserId)
 	// e.GET("/moneyPengeluaran/:id", controllers.FetchDataPengeluaranByUserId)
 
-	// // validation
-	// e.POST("/test-validation", controllers.TestStructValidation)
-	// e.POST("/test-validation-var", controllers.TestVarValidation)
+
 	return e
 }

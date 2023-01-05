@@ -26,12 +26,12 @@ func FetchAllRecruiter(c echo.Context) error {
 func StoreRecruiter(c echo.Context) error {
 	recruiter_id := helpers.ConvertStringToInt(c.FormValue("recruiter_id"))
 	recruiter_name := c.FormValue("recruiter_name")
-	RecruiterTitle := c.FormValue("RecruiterTitle")
-	RecruiterDescription := c.FormValue("RecruiterDescription")
-	RecruiterContact := c.FormValue("RecruiterContact")
+	recruiter_title := c.FormValue("recruiter_title")
+	recruiter_description := c.FormValue("recruiter_description")
+	recruiter_contact := c.FormValue("recruiter_contact")
 	recruiter_password, _ := helpers.HashPassword(c.FormValue("recruiter_password"))
 
-	result, err := models.StoreRecruiter(recruiter_id, recruiter_name, RecruiterTitle, RecruiterDescription, RecruiterContact, recruiter_password)
+	result, err := models.StoreRecruiter(recruiter_id, recruiter_name, recruiter_title, recruiter_description, recruiter_contact, recruiter_password)
 
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, result)
@@ -103,7 +103,7 @@ func CheckLogin(c echo.Context) error {
 
 }
 
-// function get user data from id
+// // function get user data from id
 func FetchRecruiterById(c echo.Context) error {
 
 	recruiter_id := c.Param("recruiter_id")
