@@ -19,8 +19,43 @@ func Init() *echo.Echo {
 		return c.String(http.StatusOK, "Hello, World!")
 	})
 
+	e.GET("/user", func(c echo.Context) error {
+		return c.String(http.StatusOK, "Hello, this is user!")
+	})
 
+	// e.GET("/user/:name", getUser)
 
-	
+	// login
+	// e.POST("/login", controllers.CheckLogin)
+
+	// user
+	// e.GET("/user", controllers.FetchAllUser,middleware.IsAuthenticated)
+	e.GET("/user", controllers.FetchAllRecruiter)
+	e.POST("/user", controllers.StoreRecruiter)
+	// e.PATCH("/user", controllers.UpdateRecruiter)
+	// e.DELETE("/user", controllers.DeleteRecruiter)
+	// e.GET("/user/:id", controllers.FetchRecruiterById)
+
+	// // plan
+	// e.GET("/plan", controllers.FetchAllPlan)
+	// e.GET("/plan/:id", controllers.FetchPlanById)
+	// e.POST("/plan", controllers.StorePlan)
+	// e.PATCH("/plan", controllers.UpdatePlan)
+	// e.DELETE("/plan", controllers.DeletePlan)
+
+	// //money
+	// e.GET("/money/:id", controllers.FetchMoneyById)
+	// e.GET("/moneyTotalPemasukan/:id", controllers.FetchTotalPemasukanById)
+	// e.GET("/moneyTotalPengeluaran/:id", controllers.FetchTotalPengeluaranById)
+	// e.PATCH("/money", controllers.UpdateMoney)
+	// e.DELETE("/money", controllers.DeleteMoney)
+	// e.GET("/currency", controllers.FetchMoneyAPI)
+	// //1pemasukan
+	// e.GET("/moneyPemasukan/:id", controllers.FetchDataPemasukanByUserId)
+	// e.GET("/moneyPengeluaran/:id", controllers.FetchDataPengeluaranByUserId)
+
+	// // validation
+	// e.POST("/test-validation", controllers.TestStructValidation)
+	// e.POST("/test-validation-var", controllers.TestVarValidation)
 	return e
 }

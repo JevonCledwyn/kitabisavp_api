@@ -29,9 +29,9 @@ func StoreRecruiter(c echo.Context) error {
 	RecruiterTitle := c.FormValue("RecruiterTitle")
 	RecruiterDescription := c.FormValue("RecruiterDescription")
 	RecruiterContact := c.FormValue("RecruiterContact")
-	password, _ := helpers.HashPassword(c.FormValue("password"))
+	recruiter_password, _ := helpers.HashPassword(c.FormValue("recruiter_password"))
 
-	result, err := models.StoreRecruiter(recruiter_id, recruiter_name, RecruiterTitle, RecruiterDescription, RecruiterContact, password)
+	result, err := models.StoreRecruiter(recruiter_id, recruiter_name, RecruiterTitle, RecruiterDescription, RecruiterContact, recruiter_password)
 
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, result)
