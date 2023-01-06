@@ -195,7 +195,7 @@ func DeleteRecruiter(id string) (Response, error) {
 }
 
 // check login and return user id
-func CheckLogin(recruiter_name, recruiter_password string) (int, error) {
+func CheckLoginRecruiter(recruiter_name, recruiter_password string) (int, error) {
 	var obj Recruiter
 	var pwd string
 	var id int

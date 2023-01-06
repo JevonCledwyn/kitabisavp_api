@@ -83,11 +83,11 @@ func DeleteRecruiter(c echo.Context) error {
 }
 
 // function checklogin and get user id from model checklogin without token
-func CheckLogin(c echo.Context) error {
+func CheckLoginRecruiter(c echo.Context) error {
 	user_recruiter := c.FormValue("user_recruiter")
 	recruiter_password := c.FormValue("recruiter_password")
 
-	result, err := models.CheckLogin(user_recruiter, recruiter_password)
+	result, err := models.CheckLoginRecruiter(user_recruiter, recruiter_password)
 
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError,

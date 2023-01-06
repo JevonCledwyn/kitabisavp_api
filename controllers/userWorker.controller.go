@@ -77,11 +77,11 @@ func DeleteWorker(c echo.Context) error {
 }
 
 // function checklogin and get user id from model checklogin without token
-func CheckLogin(c echo.Context) error {
+func CheckLoginWorker(c echo.Context) error {
 	user_worker := c.FormValue("user_worker")
 	worker_password := c.FormValue("worker_password")
 
-	result, err := models.CheckLogin(user_worker, worker_password)
+	result, err := models.CheckLoginWorker(user_worker, worker_password)
 
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError,

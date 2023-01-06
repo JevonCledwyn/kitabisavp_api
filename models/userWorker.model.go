@@ -67,7 +67,7 @@ func StoreWorker(worker_id int, worker_name string, worker_password string, work
 
 	v := validator.New()
 
-	rct := Worker{
+	wrk := Worker{
 		WorkerId:          worker_id,
 		WorkerName:        worker_name,
 		WorkerPassword:    worker_password,
@@ -76,7 +76,7 @@ func StoreWorker(worker_id int, worker_name string, worker_password string, work
 		WorkerContact:     worker_contact,
 	}
 
-	err := v.Struct(rct)
+	err := v.Struct(wrk)
 	if err != nil {
 		res.Status = http.StatusBadRequest
 		res.Message = "Error"
@@ -198,7 +198,7 @@ func DeleteWorker(id string) (Response, error) {
 
 
 // check login and return user id
-func CheckLogin(worker_name, worker_password string) (int, error) {
+func CheckLoginWorker(worker_name, worker_password string) (int, error) {
 	var obj Worker
 	var pwd string
 	var id int

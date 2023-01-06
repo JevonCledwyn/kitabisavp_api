@@ -26,8 +26,8 @@ func Init() *echo.Echo {
 	// e.GET("/user/:name", getUser)
 
 	// login
-	e.POST("/login", controllers.CheckLogin)
-
+	e.POST("/login", controllers.CheckLoginWorker)
+	e.POST("/login", controllers.CheckLoginRecruiter)
 
 	// CRUD RECRUITERS
 
@@ -37,6 +37,13 @@ func Init() *echo.Echo {
 	e.PATCH("/recruiter", controllers.UpdateRecruiter)
 	e.DELETE("/recruiter", controllers.DeleteRecruiter)
 	e.GET("/recruiter/:id", controllers.FetchRecruiterById)
+
+	// e.GET("/user", controllers.FetchAllUser,middleware.IsAuthenticated)
+	e.GET("/worker", controllers.FetchAllRecruiter)
+	e.POST("/worker", controllers.StoreRecruiter)
+	e.PATCH("/worker", controllers.UpdateRecruiter)
+	e.DELETE("/worker", controllers.DeleteRecruiter)
+	e.GET("/worker/:id", controllers.FetchRecruiterById)
 
 	// // plan
 	// e.GET("/plan", controllers.FetchAllPlan)
