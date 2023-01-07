@@ -38,11 +38,11 @@ func Init() *echo.Echo {
 	e.GET("/recruiter/:id", controllers.FetchRecruiterById)
 
 	// e.GET("/user", controllers.FetchAllUser,middleware.IsAuthenticated)
-	e.GET("/worker", controllers.FetchAllRecruiter)
-	e.POST("/worker", controllers.StoreRecruiter)
-	e.PATCH("/worker", controllers.UpdateRecruiter)
-	e.DELETE("/worker", controllers.DeleteRecruiter)
-	e.GET("/worker/:id", controllers.FetchRecruiterById)
+	e.GET("/worker", controllers.FetchAllWorker)
+	e.POST("/worker", controllers.StoreWorker)
+	e.PATCH("/worker", controllers.UpdateWorker)
+	e.DELETE("/worker", controllers.DeleteWorker)
+	e.GET("/worker/:id", controllers.FetchWorkerById)
 
 	// post Recruiter
 	e.GET("/pr", controllers.FetchAllPR)
