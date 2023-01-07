@@ -162,7 +162,7 @@ func UpdateRecruiter(recruiter_id int, recruiter_name string, recruiter_password
 }
 
 // func delete user
-func DeleteRecruiter(recruiter_id string) (Response, error) {
+func DeleteRecruiter(recruiter_id string, recruiter_name string, recruiter_password string, recruiter_title string, recruiter_description string, recruiter_contact string) (Response, error) {
 	var res Response
 
 	con := db.Createcon()

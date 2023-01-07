@@ -70,8 +70,13 @@ func UpdateRecruiter(c echo.Context) error {
 func DeleteRecruiter(c echo.Context) error {
 
 	recruiter_id := c.FormValue("recruiter_id")
+	recruiter_name := c.FormValue("recruiter_name")
+	recruiter_password, _ := helpers.HashPassword(c.FormValue("recruiter_password"))
+	recruiter_title := c.FormValue("recruiter_title")
+	recruiter_description := c.FormValue("recruiter_description")
+	recruiter_contact := c.FormValue("recruiter_contact")
 
-	result, err := models.DeleteRecruiter(recruiter_id)
+	result, err := models.DeleteRecruiter(recruiter_id, recruiter_name, recruiter_password, recruiter_title, recruiter_description, recruiter_contact)
 
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError,

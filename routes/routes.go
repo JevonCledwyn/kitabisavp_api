@@ -34,31 +34,29 @@ func Init() *echo.Echo {
 	e.GET("/recruiter", controllers.FetchAllRecruiter)
 	e.POST("/recruiter", controllers.StoreRecruiter)
 	e.PATCH("/recruiter", controllers.UpdateRecruiter)
-	e.DELETE("/recruiter", controllers.DeleteRecruiter)
-	e.GET("/recruiter/:id", controllers.FetchRecruiterById)
+	e.DELETE("/recruiter:recruiter_id", controllers.DeleteRecruiter)
+	e.GET("/recruiter/:recruiter_id", controllers.FetchRecruiterById)
 
 	// e.GET("/user", controllers.FetchAllUser,middleware.IsAuthenticated)
 	e.GET("/worker", controllers.FetchAllWorker)
 	e.POST("/worker", controllers.StoreWorker)
 	e.PATCH("/worker", controllers.UpdateWorker)
-	e.DELETE("/worker", controllers.DeleteWorker)
-	e.GET("/worker/:id", controllers.FetchWorkerById)
+	e.DELETE("/worker:worker_id", controllers.DeleteWorker)
+	e.GET("/worker/:worker_id", controllers.FetchWorkerById)
 
 	// post Recruiter
 	e.GET("/pr", controllers.FetchAllPR)
-	e.GET("/pr/:id", controllers.FetchPRById)
+	e.GET("/pr/:post_recruiter_id", controllers.FetchPRById)
 	e.POST("/pr", controllers.StorePR)
 	e.PATCH("/pr", controllers.UpdatePR)
-	e.DELETE("/pr", controllers.DeletePR)
+	e.DELETE("/pr:post_recruiter_id", controllers.DeletePR)
 
 	// post Worker
 	e.GET("/pw", controllers.FetchAllPW)
-	e.GET("/pw/:id", controllers.FetchPWById)
+	e.GET("/pw/:post_worker_id", controllers.FetchPWById)
 	e.POST("/pw", controllers.StorePW)
 	e.PATCH("/pw", controllers.UpdatePW)
-	e.DELETE("/pw", controllers.DeletePW)
-
-
+	e.DELETE("/pw:post_worker_id", controllers.DeletePW)
 
 	return e
 }
