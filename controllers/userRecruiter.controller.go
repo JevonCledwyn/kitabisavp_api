@@ -31,7 +31,7 @@ func StoreRecruiter(c echo.Context) error {
 	recruiter_description := c.FormValue("recruiter_description")
 	recruiter_contact := c.FormValue("recruiter_contact")
 
-	result, err := models.StoreRecruiter(recruiter_id, recruiter_name, recruiter_title, recruiter_description, recruiter_contact, recruiter_password)
+	result, err := models.StoreRecruiter(recruiter_id, recruiter_name, recruiter_password, recruiter_title, recruiter_description, recruiter_contact)
 
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, result)

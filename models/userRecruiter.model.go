@@ -162,19 +162,19 @@ func UpdateRecruiter(recruiter_id int, recruiter_name string, recruiter_password
 }
 
 // func delete user
-func DeleteRecruiter(id string) (Response, error) {
+func DeleteRecruiter(recruiter_id string) (Response, error) {
 	var res Response
 
 	con := db.Createcon()
 
-	sqlStatement := "DELETE FROM user_recruiter WHERE worker_id=?"
+	sqlStatement := "DELETE FROM user_recruiter WHERE recruiter_id=?"
 	stmt, err := con.Prepare(sqlStatement)
 
 	if err != nil {
 		return res, err
 	}
 
-	result, err := stmt.Exec(id)
+	result, err := stmt.Exec(recruiter_id)
 
 	if err != nil {
 		return res, err
@@ -203,7 +203,7 @@ func CheckLoginRecruiter(recruiter_name, recruiter_password string) (int, error)
 
 	sqlStatement := "SELECT * FROM user_recruiter WHERE recruiter_name = ?"
 	err := con.QueryRow(sqlStatement, recruiter_name).Scan(
-		&id, &obj.RecruiterName, &obj.RecruiterTitle, &obj.RecruiterDescription, &obj.RecruiterContact, &pwd,
+		&id, &obj.RecruiterName, &pwd, &obj.RecruiterTitle, &obj.RecruiterDescription, &obj.RecruiterContact, 
 	)
 
 	if err == sql.ErrNoRows {

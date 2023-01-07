@@ -6,8 +6,9 @@ import (
 	"kitabisavp/db"
 	"net/http"
 
-	"github.com/go-playground/validator/v10"
 	"kitabisavp/helpers"
+
+	"github.com/go-playground/validator/v10"
 )
 
 type Worker struct {
@@ -161,9 +162,8 @@ func UpdateWorker(worker_id int, worker_name string, worker_password string, wor
 
 }
 
-
 // func delete user
-func DeleteWorker(id string) (Response, error) {
+func DeleteWorker(worker_id string) (Response, error) {
 	var res Response
 
 	con := db.Createcon()
@@ -175,7 +175,7 @@ func DeleteWorker(id string) (Response, error) {
 		return res, err
 	}
 
-	result, err := stmt.Exec(id)
+	result, err := stmt.Exec(worker_id)
 
 	if err != nil {
 		return res, err
@@ -195,8 +195,6 @@ func DeleteWorker(id string) (Response, error) {
 	return res, nil
 }
 
-
-
 // check login and return user id
 func CheckLoginWorker(worker_name, worker_password string) (int, error) {
 	var obj Worker
@@ -206,7 +204,7 @@ func CheckLoginWorker(worker_name, worker_password string) (int, error) {
 
 	sqlStatement := "SELECT * FROM user_worker WHERE worker_name = ?"
 	err := con.QueryRow(sqlStatement, worker_name).Scan(
-		&id, &obj.WorkerName, &obj.WorkerTitle, &obj.WorkerDescription, &obj.WorkerContact, &pwd,
+		&id, &obj.WorkerName, &pwd, &obj.WorkerTitle, &obj.WorkerDescription, &obj.WorkerContact,
 	)
 
 	if err == sql.ErrNoRows {

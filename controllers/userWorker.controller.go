@@ -31,7 +31,7 @@ func StoreWorker(c echo.Context) error {
 	worker_contact := c.FormValue("worker_contact")
 	worker_password, _ := helpers.HashPassword(c.FormValue("worker_password"))
 
-	result, err := models.StoreWorker(worker_id, worker_name, worker_title, worker_description, worker_contact, worker_password)
+	result, err := models.StoreWorker(worker_id, worker_name, worker_password, worker_title, worker_description, worker_contact)
 
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, result)
@@ -45,12 +45,12 @@ func UpdateWorker(c echo.Context) error {
 
 	worker_id := helpers.ConvertStringToInt(c.FormValue("worker_id"))
 	worker_name := c.FormValue("worker_name")
+	worker_password, _ := helpers.HashPassword(c.FormValue("worker_password"))
 	worker_title := c.FormValue("worker_title")
 	worker_description := c.FormValue("worker_description")
 	worker_contact := c.FormValue("worker_contact")
-	worker_password, _ := helpers.HashPassword(c.FormValue("worker_password"))
 
-	result, err := models.UpdateWorker(worker_id, worker_name, worker_title, worker_description, worker_contact, worker_password)
+	result, err := models.UpdateWorker(worker_id, worker_name, worker_password, worker_title, worker_description, worker_contact)
 
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError,
