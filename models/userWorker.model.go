@@ -163,7 +163,7 @@ func UpdateWorker(worker_id int, worker_name string, worker_password string, wor
 }
 
 // func delete user
-func DeleteWorker(worker_id string) (Response, error) {
+func DeleteWorker(worker_id string, worker_name string, worker_password string, worker_title string, worker_description string, worker_contact string) (Response, error) {
 	var res Response
 
 	con := db.Createcon()
@@ -208,7 +208,7 @@ func CheckLoginWorker(worker_name, worker_password string) (int, error) {
 	)
 
 	if err == sql.ErrNoRows {
-		fmt.Print("Email not found!")
+		fmt.Print("Name not found!")
 		return 0, err
 	}
 

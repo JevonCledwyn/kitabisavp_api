@@ -6,8 +6,9 @@ import (
 	"kitabisavp/db"
 	"net/http"
 
-	"github.com/go-playground/validator/v10"
 	"kitabisavp/helpers"
+
+	"github.com/go-playground/validator/v10"
 )
 
 type Recruiter struct {
@@ -68,12 +69,12 @@ func StoreRecruiter(recruiter_id int, recruiter_name string, recruiter_password 
 	v := validator.New()
 
 	rct := Recruiter{
-	RecruiterId:			recruiter_id,
-	RecruiterName:			recruiter_name,	
-	RecruiterPassword:		recruiter_password,
-	RecruiterTitle:			recruiter_title,
-	RecruiterDescription:	recruiter_description,
-	RecruiterContact:		recruiter_contact,
+		RecruiterId:          recruiter_id,
+		RecruiterName:        recruiter_name,
+		RecruiterPassword:    recruiter_password,
+		RecruiterTitle:       recruiter_title,
+		RecruiterDescription: recruiter_description,
+		RecruiterContact:     recruiter_contact,
 	}
 
 	err := v.Struct(rct)
@@ -164,35 +165,35 @@ func UpdateRecruiter(recruiter_id int, recruiter_name string, recruiter_password
 // func delete user
 func DeleteRecruiter(recruiter_id string, recruiter_name string, recruiter_password string, recruiter_title string, recruiter_description string, recruiter_contact string) (Response, error) {
 	var res Response
-
+   
 	con := db.Createcon()
-
+   
 	sqlStatement := "DELETE FROM user_recruiter WHERE recruiter_id=?"
 	stmt, err := con.Prepare(sqlStatement)
-
+   
 	if err != nil {
-		return res, err
+	 return res, err
 	}
-
+   
 	result, err := stmt.Exec(recruiter_id)
-
+   
 	if err != nil {
-		return res, err
+	 return res, err
 	}
-
+   
 	rowAffectedID, err := result.RowsAffected()
-
+   
 	if err != nil {
-		return res, err
+	 return res, err
 	}
 	res.Status = http.StatusOK
 	res.Message = "Success"
 	res.Data = map[string]int64{
-		"row_affected_id": rowAffectedID,
+	 "row_affected_id": rowAffectedID,
 	}
-
+   
 	return res, nil
-}
+   }
 
 // check login and return user id
 func CheckLoginRecruiter(recruiter_name, recruiter_password string) (int, error) {
@@ -203,11 +204,11 @@ func CheckLoginRecruiter(recruiter_name, recruiter_password string) (int, error)
 
 	sqlStatement := "SELECT * FROM user_recruiter WHERE recruiter_name = ?"
 	err := con.QueryRow(sqlStatement, recruiter_name).Scan(
-		&id, &obj.RecruiterName, &pwd, &obj.RecruiterTitle, &obj.RecruiterDescription, &obj.RecruiterContact, 
+		&id, &obj.RecruiterName, &pwd, &obj.RecruiterTitle, &obj.RecruiterDescription, &obj.RecruiterContact,
 	)
 
 	if err == sql.ErrNoRows {
-		fmt.Print("Email not found!")
+		fmt.Print("Name not found!")
 		return 0, err
 	}
 
@@ -225,27 +226,27 @@ func CheckLoginRecruiter(recruiter_name, recruiter_password string) (int, error)
 	return id, nil
 }
 
-	// RecruiterId          int    `json:"recruiter_id"`
-	// RecruiterName        string `json:"recruiter_name"`
-	// RecruiterPassword    string `json:"recruiter_password"`
-	// RecruiterTitle       string `json:"recruiter_title"`
-	// RecruiterDescription string `json:"recruiter_description"`
-	// RecruiterContact     string `json:"recruiter_contact"`
+// RecruiterId          int    `json:"recruiter_id"`
+// RecruiterName        string `json:"recruiter_name"`
+// RecruiterPassword    string `json:"recruiter_password"`
+// RecruiterTitle       string `json:"recruiter_title"`
+// RecruiterDescription string `json:"recruiter_description"`
+// RecruiterContact     string `json:"recruiter_contact"`
 
 func FetchRecruiterById(recruiter_id string) (Recruiter, error) {
-    var obj Recruiter
+	var obj Recruiter
 
-    con := db.Createcon()
+	con := db.Createcon()
 
-    sqlStatement := "SELECT * FROM user_recruiter WHERE recruiter_id = ?"
+	sqlStatement := "SELECT * FROM user_recruiter WHERE recruiter_id = ?"
 
-    rows := con.QueryRow(sqlStatement, recruiter_id)
+	rows := con.QueryRow(sqlStatement, recruiter_id)
 
-    err := rows.Scan(&obj.RecruiterId, &obj.RecruiterName, &obj.RecruiterPassword, &obj.RecruiterTitle, &obj.RecruiterDescription, &obj.RecruiterContact)
+	err := rows.Scan(&obj.RecruiterId, &obj.RecruiterName, &obj.RecruiterPassword, &obj.RecruiterTitle, &obj.RecruiterDescription, &obj.RecruiterContact)
 
-    if err != nil {
-        return obj, err
-    }
+	if err != nil {
+		return obj, err
+	}
 
-    return obj, nil
+	return obj, nil
 }

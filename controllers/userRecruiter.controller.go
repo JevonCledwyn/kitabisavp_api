@@ -75,17 +75,17 @@ func DeleteRecruiter(c echo.Context) error {
 	recruiter_title := c.FormValue("recruiter_title")
 	recruiter_description := c.FormValue("recruiter_description")
 	recruiter_contact := c.FormValue("recruiter_contact")
-
+   
 	result, err := models.DeleteRecruiter(recruiter_id, recruiter_name, recruiter_password, recruiter_title, recruiter_description, recruiter_contact)
-
+   
 	if err != nil {
-		return c.JSON(http.StatusInternalServerError,
-			map[string]string{"message": err.Error()})
+	 return c.JSON(http.StatusInternalServerError,
+	  map[string]string{"message": err.Error()})
 	}
-
+   
 	return c.JSON(http.StatusOK, result)
-
-}
+   
+   }
 
 // function checklogin and get user id from model checklogin without token
 func CheckLoginRecruiter(c echo.Context) error {
