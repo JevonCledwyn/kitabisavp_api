@@ -31,7 +31,6 @@ func Init() *echo.Echo {
 
 	// CRUD RECRUITERS
 
-	// e.GET("/user", controllers.FetchAllUser,middleware.IsAuthenticated)
 	e.GET("/recruiter", controllers.FetchAllRecruiter)
 	e.POST("/recruiter", controllers.StoreRecruiter)
 	e.PATCH("/recruiter", controllers.UpdateRecruiter)
@@ -45,23 +44,20 @@ func Init() *echo.Echo {
 	e.DELETE("/worker", controllers.DeleteRecruiter)
 	e.GET("/worker/:id", controllers.FetchRecruiterById)
 
-	// // plan
-	// e.GET("/plan", controllers.FetchAllPlan)
-	// e.GET("/plan/:id", controllers.FetchPlanById)
-	// e.POST("/plan", controllers.StorePlan)
-	// e.PATCH("/plan", controllers.UpdatePlan)
-	// e.DELETE("/plan", controllers.DeletePlan)
+	// post Recruiter
+	e.GET("/pr", controllers.FetchAllPR)
+	e.GET("/pr/:id", controllers.FetchPRById)
+	e.POST("/pr", controllers.StorePR)
+	e.PATCH("/pr", controllers.UpdatePR)
+	e.DELETE("/pr", controllers.DeletePR)
 
-	// //money
-	// e.GET("/money/:id", controllers.FetchMoneyById)
-	// e.GET("/moneyTotalPemasukan/:id", controllers.FetchTotalPemasukanById)
-	// e.GET("/moneyTotalPengeluaran/:id", controllers.FetchTotalPengeluaranById)
-	// e.PATCH("/money", controllers.UpdateMoney)
-	// e.DELETE("/money", controllers.DeleteMoney)
-	// e.GET("/currency", controllers.FetchMoneyAPI)
-	// //1pemasukan
-	// e.GET("/moneyPemasukan/:id", controllers.FetchDataPemasukanByUserId)
-	// e.GET("/moneyPengeluaran/:id", controllers.FetchDataPengeluaranByUserId)
+	// post Worker
+	e.GET("/pw", controllers.FetchAllPW)
+	e.GET("/pw/:id", controllers.FetchPWById)
+	e.POST("/pw", controllers.StorePW)
+	e.PATCH("/pw", controllers.UpdatePW)
+	e.DELETE("/pw", controllers.DeletePW)
+
 
 
 	return e
