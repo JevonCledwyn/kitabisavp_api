@@ -84,24 +84,24 @@ func DeleteWorker(c echo.Context) error {
 
 // function checklogin and get user id from model checklogin without token
 func CheckLoginWorker(c echo.Context) error {
-	user_worker := c.FormValue("user_worker")
+	worker_name := c.FormValue("worker_name")
 	worker_password := c.FormValue("worker_password")
-
-	result, err := models.CheckLoginWorker(user_worker, worker_password)
-
+   
+	result, err := models.CheckLoginWorker(worker_name, worker_password)
+   
 	if err != nil {
-		return c.JSON(http.StatusInternalServerError,
-			map[string]string{"message": err.Error()})
+	 return c.JSON(http.StatusInternalServerError,
+	  map[string]string{"message": err.Error()})
 	}
-
+   
 	//make return data to json
 	return c.JSON(http.StatusOK,
-		map[string]interface{}{
-			"user_id": result,
-			"message": "login success",
-		})
-
-}
+	 map[string]interface{}{
+	  "worker_id": result,
+	  "message": "login success",
+	 })
+   
+   }
 
 // // function get user data from id
 func FetchWorkerById(c echo.Context) error {

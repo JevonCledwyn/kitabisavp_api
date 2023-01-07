@@ -1,9 +1,9 @@
 package controllers
 
 import (
-	"net/http"
-	"kitabisavp/models"
 	"kitabisavp/helpers"
+	"kitabisavp/models"
+	"net/http"
 
 	"github.com/labstack/echo/v4"
 )
@@ -40,6 +40,7 @@ func StoreRecruiter(c echo.Context) error {
 	return c.JSON(http.StatusOK, result)
 
 }
+
 //	RecruiterId          int    `json:"recruiter_id"`
 // 	RecruiterName        string `json:"recruiter_name"`
 // 	RecruiterPassword    string `json:"recruiter_password"`
@@ -75,24 +76,24 @@ func DeleteRecruiter(c echo.Context) error {
 	recruiter_title := c.FormValue("recruiter_title")
 	recruiter_description := c.FormValue("recruiter_description")
 	recruiter_contact := c.FormValue("recruiter_contact")
-   
+
 	result, err := models.DeleteRecruiter(recruiter_id, recruiter_name, recruiter_password, recruiter_title, recruiter_description, recruiter_contact)
-   
+
 	if err != nil {
-	 return c.JSON(http.StatusInternalServerError,
-	  map[string]string{"message": err.Error()})
+		return c.JSON(http.StatusInternalServerError,
+			map[string]string{"message": err.Error()})
 	}
-   
+
 	return c.JSON(http.StatusOK, result)
-   
-   }
+
+}
 
 // function checklogin and get user id from model checklogin without token
 func CheckLoginRecruiter(c echo.Context) error {
-	user_recruiter := c.FormValue("user_recruiter")
+	recruiter_name := c.FormValue("recruiter_name")
 	recruiter_password := c.FormValue("recruiter_password")
 
-	result, err := models.CheckLoginRecruiter(user_recruiter, recruiter_password)
+	result, err := models.CheckLoginRecruiter(recruiter_name, recruiter_password)
 
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError,
@@ -102,8 +103,8 @@ func CheckLoginRecruiter(c echo.Context) error {
 	//make return data to json
 	return c.JSON(http.StatusOK,
 		map[string]interface{}{
-			"user_id": result,
-			"message": "login success",
+			"recruiter_id": result,
+			"message":      "login success",
 		})
 
 }
